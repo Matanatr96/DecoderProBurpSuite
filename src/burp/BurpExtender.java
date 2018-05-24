@@ -29,7 +29,7 @@ public class BurpExtender implements IBurpExtender, IMessageEditorTabFactory, IT
         helpers = callbacks.getHelpers();
 
         // set our extension name
-        callbacks.setExtensionName("Anush Custom Decoder");
+        callbacks.setExtensionName("Custom Decoder");
 
         // register ourselves as a message editor tab factory
         callbacks.registerMessageEditorTabFactory(this);

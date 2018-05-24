@@ -23,7 +23,7 @@ Feel free to replace the regex with your own!
 ## Authors
 
 Mostly reworked code from 
-[PortSwigger](https://github.com/PortSwigger/json-beautifier)
+[Json-Beautifier](https://github.com/PortSwigger/json-beautifier)
 
 
 

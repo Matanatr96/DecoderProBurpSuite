@@ -126,18 +126,7 @@ public class BurpExtender implements IBurpExtender, IMessageEditorTabFactory, IT
         }
 
         @Override
-        public byte[] getMessage() {
-            String json = "";
-            if (txtInput.isTextModified()) {
-                try {
-                    IRequestInfo requestInfo = helpers.analyzeRequest(currentMessage);
-                    return helpers.buildHttpMessage(requestInfo.getHeaders(), json.getBytes());
-                } catch (Exception e) {
-                    return currentMessage;
-                }
-            }
-            return null;
-        }
+        public byte[] getMessage() {return null;}
 
         @Override
         public boolean isModified() {

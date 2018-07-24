@@ -4,7 +4,7 @@ This is a simple burp suite plugin that cleans and decodes the raw request and r
 
 ## Getting Started
 
-1. Download  Burpsuite and simply the burp.jar file in this repo (burp/out/artifacts/burp_jar/burp.jar)
+1. Download  Burp Suite and simply find the burp.jar file in this repo (out/artifacts/burp_jar/burp.jar)
 2. Upload it using the extender page
 
 ### Editing the regex

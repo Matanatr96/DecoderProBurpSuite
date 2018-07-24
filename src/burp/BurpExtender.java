@@ -1,12 +1,14 @@
 package burp;
 
 import java.awt.Component;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.URLDecoder;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipException;
 import javax.swing.JScrollPane;
 
 
@@ -148,11 +150,16 @@ public class BurpExtender implements IBurpExtender, IMessageEditorTabFactory, IT
             String temp = new String(content);
             String decoded = removeHTMLTags(temp);
             try {
+                byte[] bytes = decoded.getBytes();
+                decoded = removeGzipEncoding(bytes);
+            } catch (IOException e) {
+
+            }
+            try {
                 decoded = URLDecoder.decode(decoded, "UTF-8");
                 decoded = URLDecoder.decode(decoded, "UTF-8");
                 decoded = URLDecoder.decode(decoded, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                return e.toString().getBytes();
+            } catch (IOException e) {
             }
 
             String patterened = applyPattern(decoded);
@@ -180,6 +187,21 @@ public class BurpExtender implements IBurpExtender, IMessageEditorTabFactory, IT
         public String removeHTMLTags(String text) {
             String cleaned = text.replaceAll("<[^>]*>", "");
             return cleaned;
+        }
+
+        public String removeGzipEncoding(byte[] content) throws IOException {
+            ByteArrayInputStream bis = new ByteArrayInputStream(content);
+            GZIPInputStream gis = new GZIPInputStream(bis);
+            BufferedReader br = new BufferedReader(new InputStreamReader(gis, "UTF-8"));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+            gis.close();
+            bis.close();
+            return sb.toString();
         }
     }
 }

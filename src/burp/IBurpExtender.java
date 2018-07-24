@@ -12,7 +12,7 @@ package burp;
 /**
  * All extensions must implement this interface.
  *
- * Implementations must be called Temp.BurpExtender, in the package burp, must be
+ * Implementations must be called burp.BurpExtender, in the package burp, must be
  * declared public, and must provide a default (public, no-argument)
  * constructor.
  */
